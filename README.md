@@ -6,6 +6,12 @@ For estimation of these components from a huge dataset of alphabets various meth
 
 
 
+## Steps to run code
+* Download the attached data.csv file
+* Give directory/Location of downloaded data.csv file as input to the program.
+* Run the program and observe the output.
+
+
 
 
 
