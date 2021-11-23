@@ -10,7 +10,7 @@ For estimation of these components from a huge dataset of alphabets various meth
 
 
 # Report
-[Project Report] (https://github.com/prajyotmorey/PR_CS571/blob/main/Report.pdf "Project Report title")
+[Project Report] (https://github.com/prajyotmorey/PR_CS571/blob/main/Report.pdf "Project Report")
 
 # Contact for any other information details regarding project
 
