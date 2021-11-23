@@ -18,12 +18,14 @@ from sklearn.datasets import make_sparse_coded_signal
 from sklearn.decomposition import DictionaryLearning
 
 
-df = pd.read_csv('data.csv')
-Z= df.values
+df = pd.read_csv('data.csv') #Give Input Here
+Z= df.values             #Converting dataset to Matrix for easy and better manipulation
 Z=Z.reshape(10000,4,4)
-Z= shuffle(Z[:10000])
+Z= shuffle(Z[:10000])    #Shuffle Data Randomly
 OZ=np.zeros((10000,4,4)) #Storage for Original array
-OZ=Z
+OZ=Z #Original Dataset Stored future
+
+#Ploting Some Original Data Images Sample
 fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
 fig.suptitle('Original Images', fontsize=16)
 plt.tight_layout()
@@ -32,10 +34,11 @@ for i in range(25):
     axes[i].imshow(Z[i],cmap="Greys")
 
 
-# Z= shuffle(Z[:10000])
-Siz=Z[0:199] #size track
 
-N_Z=np.zeros((10000,4,4))#For storing noissy image
+Siz=Z[0:199] #For extracting size size track
+N_Z=np.zeros((10000,4,4)) #For storing noissy image
+
+#10 Different Noise Models are Generated and added randomly.
 
 #Noise_1
 Mean=0;
@@ -141,7 +144,7 @@ Z[8800:8999]=Z[8800:8999]+noise10
 
 
 
-
+#Plotting The Noisy Images
 N_Z=Z
 fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
 fig.suptitle('Noisy Images', fontsize=16)
@@ -150,7 +153,7 @@ axes = ax.flatten()
 for i in range(25):
     axes[i].imshow(N_Z[i],cmap="Greys")
 
-#Adding rotation
+# Rotation
 angle = 90
 for i in range(0,199):
     N_Z[i]= rotate(N_Z[i], angle)
@@ -171,7 +174,7 @@ angle = 270
 for i in range(800,999):
     N_Z[i]= rotate(N_Z[i], angle)
 
-
+#Plotting Noisy with Rotation samples
 fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
 fig.suptitle('Noisy Images with Rotation', fontsize=16)
 plt.tight_layout()
@@ -181,13 +184,14 @@ for i in range(25):
 
 
 A=N_Z.reshape(10000,16)
-####Applying PCA####
+
+
+#####################################Applying PCA##############################
 pca=PCA(16)
 Fit_try=pca.fit(A)
 g=pca.components_
-# newI=pca.fit_transform(A)
-# recrI=pca.inverse_transform(newI)
 
+#Plotting PCA Component
 Final=g
 Final=Final.reshape(16,4,4)
 fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
@@ -198,14 +202,12 @@ for i in range(16):
     axes[i].imshow(Final[i],cmap="Greys")
     
     
-    
+#####################################Applying NMF##############################    
 nmf = NMF(16)
 nmf.fit(np.abs(A))
 Comp=nmf.components_
-# W = nmf.fit_transform(np.abs(A))
-# H = nmf.inverse_transform(W)
 
-
+#Plotting NMF Component
 B=Comp.reshape(16,4,4)
 fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
 fig.suptitle('NMF Output', fontsize=16)
@@ -213,10 +215,23 @@ plt.tight_layout()
 axes = ax.flatten()
 for i in range(16):
     axes[i].imshow(B[i],cmap="Greys")
-    
-# dict_learner = DictionaryLearning(
-#     n_components=15, transform_algorithm='lasso_lars', random_state=42,
-# )
-# X_transformed = dict_learner.fit_transform(A)
+
+
+
+#################################Applying Dictionary Learning##################    
+dict_learner = DictionaryLearning(
+     n_components=16, transform_algorithm='lasso_lars', random_state=42,
+ )
+dict_learner.fit(A)
+D=dict_learner.components_
+
+#Plotting Dictionary Learning Component
+DL=D.reshape(16,4,4)
+fig, ax = plt.subplots(5,5, figsize = (10,10),sharex=True,sharey=True)
+fig.suptitle('Dictionary Output', fontsize=16)
+plt.tight_layout()
+axes = ax.flatten()
+for i in range(16):
+    axes[i].imshow(DL[i],cmap="Greys")
 
 
