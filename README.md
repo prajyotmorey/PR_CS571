@@ -5,6 +5,16 @@ For estimation of these components from a huge dataset of alphabets various meth
 
 
 
+## Folder Contains
+   
+   * Output---------->Contains plots/Outputs
+   * Code.py--------->Problem Code
+   * Data_generartion.py---->Generating dataset of alphabets and converting to .CSV file
+   * Readme.md------->for Instruction
+   * Report.pdf------>Report of given Project
+   * data.csv-------->dataset in CSV formated file.
+
+
 
 ## Steps to run code
 * Download the attached data.csv file
@@ -17,6 +27,8 @@ For estimation of these components from a huge dataset of alphabets various meth
 
 # Report
 [Project Report] (https://github.com/prajyotmorey/PR_CS571/blob/main/Report.pdf "Project Report")
+
+
 
 # Contact for any other information details regarding project
 
