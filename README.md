@@ -10,7 +10,7 @@ For estimation of these components from a huge dataset of alphabets various meth
 
 
 # Report
-Click [here] to go to my Quora profile.
+[Project Report] (https://github.com/prajyotmorey/PR_CS571/blob/main/Report.pdf "Project Report title")
 
 # Contact for any other information details regarding project
 
